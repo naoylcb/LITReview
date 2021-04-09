@@ -1,0 +1,4 @@
+env/
+litreview_project/app/__pycache__/
+litreview_project/app/migrations/__pycache__/
+litreview_project/litreview_project/__pycache__/
