@@ -1,0 +1,28 @@
+{% extends 'authentication/base.html' %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>{{ form.errors }}</p>
+{% endif %}
+
+<h1>Inscrivez-vous</h1>
+
+<form method="POST" action="{% url 'authentication:registration' %}">
+    {% csrf_token %}
+
+    {{ form.username.label_tag }}
+    {{ form.username }}
+
+    {{ form.password1.label_tag }}
+    {{ form.password1 }}
+
+    {{ form.password2.label_tag }}
+    {{ form.password2 }}
+
+    <a href="{% url 'authentication:login' %}">Retourner</a>
+    
+    <input type="submit" value="S'inscrire">
+</form>
+
+{% endblock %}
