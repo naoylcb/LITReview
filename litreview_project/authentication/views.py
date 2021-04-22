@@ -2,6 +2,10 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout
 from django.shortcuts import redirect, render
 
+def index(request):
+    link = 'posts:feed' if request.user.is_authenticated else 'authentication:login'
+    return redirect(f'{link}')
+
 def login_view(request):
     if not request.user.is_authenticated:
         if request.method == 'POST':

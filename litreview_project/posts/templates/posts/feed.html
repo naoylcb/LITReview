@@ -1,2 +1,16 @@
-<p>Bonjour, {{ user.username }} !</p>
-<a href="{% url 'authentication:logout' %}">Se déconnecter</a>
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+<a href="{% url 'posts:create_ticket'%}">Demander une critique</a>
+<a href="{% url 'posts:create_ticket_review' %}">Créer une critique</a>
+
+{% for post in posts %}
+    {% if post.content_type == 'TICKET' %}
+        {% include 'posts/ticket_snippet.html' with ticket=post %}
+    {% elif post.content_type == 'REVIEW' %}
+        {% include 'posts/review_snippet.html' with review=post %}
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

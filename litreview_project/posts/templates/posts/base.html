@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LITReview</title>
+    </head>
+    <body>
+        <header>
+            <p>{{ user.username }}</p>
+            <h1>LITReview</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'posts:feed' %}">Flux</a></li>
+                    <li><a href="{% url 'posts:feed' %}">Posts</a></li>
+                    <li><a href="{% url 'subscription:subscription' %}">Abonnements</a></li>
+                    <li><a href="{% url 'authentication:logout' %}">Se déconnecter</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer>Copyright © LITReview</footer>
+    </body>
+</html>

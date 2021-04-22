@@ -1,0 +1,67 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+<h1>Créer une critique</h1>
+
+<form method="POST" action="{% url 'posts:create_ticket_review' %}">
+    {% csrf_token %}
+
+    <fieldset>
+        <legend>Livre / Article</legend>
+
+        <div>
+            <label for="title">Titre</label>
+            <input type="text" name="title" id="title" maxlength=128 required>
+        </div>
+    
+        <div>
+            <label for="description">Description</label>
+            <textarea name="description" id="description" cols="30" rows="10" max_length=2048></textarea>
+        </div>
+    
+        <div>
+            <label for="image">Image</label>
+            <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Critique</legend>
+        
+        <div>
+            <label for="headline">Titre</label>
+            <input type="text" name="headline" id="headline" maxlength=128 required>
+        </div>
+        
+        <fieldset>
+            <legend>Note</legend>
+            <input type="radio" id="0" name="rating" value="0">
+            <label for="0">- 0</label>
+            
+            <input type="radio" id="1" name="rating" value="1">
+            <label for="1">- 1</label>
+            
+            <input type="radio" id="2" name="rating" value="2">
+            <label for="2">- 2</label>
+            
+            <input type="radio" id="3" name="rating" value="3">
+            <label for="3">- 3</label>
+            
+            <input type="radio" id="4" name="rating" value="4">
+            <label for="4">- 4</label>
+            
+            <input type="radio" id="5" name="rating" value="5" checked>
+            <label for="5">- 5</label>
+        </fieldset>
+
+        <div>
+            <label for="body">Commentaire</label>
+            <textarea name="body" id="body" cols="30" rows="10" max_length=8192></textarea>
+        </div>
+    </fieldset>
+
+    <input type="submit" value="Envoyer">
+</form>
+
+{% endblock %}

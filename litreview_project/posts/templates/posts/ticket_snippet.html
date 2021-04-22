@@ -1,0 +1,12 @@
+<div class="ticket" style="border: 1px solid black; margin: 10px;">
+    {% if ticket.user == user %}
+    <p>Vous avez demandé une critique</p>
+    {% else %}
+    <p>{{ ticket.user }} a demandé une critique</p>
+    {% endif %}
+    <p>{{ ticket.time_created }}</p>
+    <p>{{ ticket.title }}</p>
+    <p>{{ ticket.description }}</p>
+    <p>{{ ticket.image }}</p>
+    <a href="{% url 'posts:create_review' ticket.title %}">Créer une critique</a>
+</div>

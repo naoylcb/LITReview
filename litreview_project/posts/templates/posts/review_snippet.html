@@ -1,0 +1,12 @@
+<div class="review" style="border: 1px solid red; margin: 10px;">
+    {% if review.user == user %}
+    <p>Vous avez publié une critique</p>
+    {% else %}
+    <p>{{ review.user }} a publié une critique</p>
+    {% endif %}
+    <p>{{ review.time_created }}</p>
+    <p>{{ review.headline }}</p>
+    <p>{{ review.rating }}</p>
+    <p>{{ review.body }}</p>
+    {% include 'posts/ticket_snippet.html' with ticket=review.ticket %}
+</div>

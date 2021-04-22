@@ -12,15 +12,14 @@
 {% endif %}
 
 <form method="POST" action="{% url 'authentication:login' %}">
-{% csrf_token %}
+    {% csrf_token %}
 
-{{ form.username.label_tag }}
-{{ form.username }}
+    {{ form.username.label_tag }}
+    {{ form.username }}
 
-{{ form.password.label_tag }}
-{{ form.password }}
-
-<input type="submit" value="Se connecter">
+    {{ form.password.label_tag }}
+    {{ form.password }}
+    <input type="submit" value="Se connecter">
 </form>
 
 {% endblock %}
