@@ -4,11 +4,18 @@
     {% else %}
     <p>{{ ticket.user }} a demandé une critique</p>
     {% endif %}
+    
     <p>{{ ticket.time_created }}</p>
     <p>{{ ticket.title }}</p>
     <p>{{ ticket.description }}</p>
     <p>{{ ticket.image }}</p>
+
     {% if can_review %}
     <a href="{% url 'posts:create_review' ticket.title %}">Créer une critique</a>
+    {% endif %}
+
+    {% if my_ticket %}
+    <a href="{% url 'posts:edit_ticket' ticket.title %}">Modifier</a>
+    <a href="{% url 'posts:delete_ticket' ticket.title %}">Supprimer</a>
     {% endif %}
 </div>

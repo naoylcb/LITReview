@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<h1>Créer une critique</h1>
+<h1>Modifier votre critique</h1>
 
 <div style="border: 1px solid black;">
     <p>Vous êtes en train de poster en réponse à</p>
-    {% include 'posts/ticket_snippet.html' %}
+    {% include 'posts/ticket_snippet.html' with ticket=review.ticket %}
 </div>
 
-<form method="POST" action="{% url 'posts:create_review' ticket.title %}">
+<form method="POST" action="{% url 'posts:edit_review' review.headline %}">
     {% csrf_token %}
 
     <fieldset>
@@ -17,7 +17,7 @@
         
         <div>
             <label for="headline">Titre</label>
-            <input type="text" name="headline" id="headline" maxlength=128 required>
+            <input type="text" name="headline" id="headline" value="{{ review.headline }}" maxlength=128 required>
         </div>
         
         <fieldset>
@@ -43,7 +43,7 @@
 
         <div>
             <label for="body">Commentaire</label>
-            <textarea name="body" id="body" cols="30" rows="10" max_length=8192></textarea>
+            <textarea name="body" id="body" cols="30" rows="10" max_length=8192>{{ review.body }}</textarea>
         </div>
     </fieldset>
 

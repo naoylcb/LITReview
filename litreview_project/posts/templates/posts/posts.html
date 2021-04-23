@@ -1,0 +1,15 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+<h1>Vos posts</h1>
+
+{% for post in posts %}
+    {% if post.content_type == 'TICKET' %}
+        {% include 'posts/ticket_snippet.html' with ticket=post my_ticket=True %}
+    {% elif post.content_type == 'REVIEW' %}
+        {% include 'posts/review_snippet.html' with review=post my_review=True %}
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

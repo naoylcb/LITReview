@@ -1,0 +1,28 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+<h1>Modifier votre ticket</h1>
+
+<form method="POST" action="{% url 'posts:edit_ticket' ticket.title %}">
+    {% csrf_token %}
+
+    <div>
+        <label for="title">Titre</label>
+        <input type="text" name="title" id="title" value="{{ ticket.title }}" maxlength=128 required>
+    </div>
+
+    <div>
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10" max_length=2048>{{ ticket.description }}</textarea>
+    </div>
+
+    <div>
+        <label for="image">Image</label>
+        <input type="file" id="image" name="image" accept="image/png, image/jpeg" value="{{ ticket.image }}">
+    </div>
+    
+    <input type="submit" value="Envoyer">
+</form>
+
+{% endblock %}
