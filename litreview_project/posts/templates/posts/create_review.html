@@ -6,7 +6,7 @@
 
 <div style="border: 1px solid black;">
     <p>Vous êtes en train de poster en réponse à</p>
-    {% include 'posts/ticket_snippet.html' %}
+    {% include 'posts/ticket_snippet.html' with can_review=False %}
 </div>
 
 <form method="POST" action="{% url 'posts:create_review' ticket.title %}">

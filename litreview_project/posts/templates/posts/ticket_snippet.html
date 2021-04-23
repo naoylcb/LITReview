@@ -8,5 +8,7 @@
     <p>{{ ticket.title }}</p>
     <p>{{ ticket.description }}</p>
     <p>{{ ticket.image }}</p>
+    {% if can_review %}
     <a href="{% url 'posts:create_review' ticket.title %}">Créer une critique</a>
+    {% endif %}
 </div>

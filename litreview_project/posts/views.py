@@ -9,13 +9,18 @@ from .models import Ticket, Review
 def feed(request):
     if request.user.is_authenticated:
         #user_subs = [uf.followed_user for uf in UserFollows.objects.all().filter(user=request.user)]
-        tickets = Ticket.objects.all()
-        tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-        
         reviews = Review.objects.all()
         reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
         
-        posts = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
+        reviewed_tickets_title = [r.ticket.title for r in Review.objects.all()]
+        reviewed_tickets = Ticket.objects.filter(title__in=reviewed_tickets_title)
+        reviewed_tickets = reviewed_tickets.annotate(content_type=Value('REVIEWED_TICKET', CharField()))
+        
+        unreviewed_tickets = Ticket.objects.exclude(title__in=reviewed_tickets_title)
+        unreviewed_tickets = unreviewed_tickets.annotate(content_type=Value('UNREVIEWED_TICKET', CharField()))
+        
+        posts = sorted(chain(reviews, reviewed_tickets, unreviewed_tickets), 
+                       key=lambda post: post.time_created, reverse=True)
 
         return render(request, 'posts/feed.html', {'posts': posts})
     else:
