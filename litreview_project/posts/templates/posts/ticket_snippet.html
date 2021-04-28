@@ -8,7 +8,10 @@
     <p>{{ ticket.time_created }}</p>
     <p>{{ ticket.title }}</p>
     <p>{{ ticket.description }}</p>
-    <p>{{ ticket.image }}</p>
+    
+    {% if ticket.image.url != "" %}
+    <img width="10%" src="{{ ticket.image.url }}"></img>
+    {% endif %}
 
     {% if can_review %}
     <a href="{% url 'posts:create_review' ticket.title %}">Créer une critique</a>

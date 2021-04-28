@@ -4,7 +4,7 @@
 
 <h1>Modifier votre ticket</h1>
 
-<form method="POST" action="{% url 'posts:edit_ticket' ticket.title %}">
+<form method="POST" action="{% url 'posts:edit_ticket' ticket.title %}" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div>
@@ -19,7 +19,7 @@
 
     <div>
         <label for="image">Image</label>
-        <input type="file" id="image" name="image" accept="image/png, image/jpeg" value="{{ ticket.image }}">
+        <input type="file" id="image" name="image" accept="image/*">
     </div>
     
     <input type="submit" value="Envoyer">

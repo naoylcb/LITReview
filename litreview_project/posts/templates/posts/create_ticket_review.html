@@ -4,7 +4,7 @@
 
 <h1>Créer une critique</h1>
 
-<form method="POST" action="{% url 'posts:create_ticket_review' %}">
+<form method="POST" action="{% url 'posts:create_ticket_review' %}" enctype="multipart/form-data">
     {% csrf_token %}
 
     <fieldset>
@@ -22,7 +22,7 @@
     
         <div>
             <label for="image">Image</label>
-            <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+            <input type="file" id="image" name="image" accept="image/*">
         </div>
     </fieldset>
 
@@ -36,23 +36,10 @@
         
         <fieldset>
             <legend>Note</legend>
-            <input type="radio" id="0" name="rating" value="0">
-            <label for="0">- 0</label>
-            
-            <input type="radio" id="1" name="rating" value="1">
-            <label for="1">- 1</label>
-            
-            <input type="radio" id="2" name="rating" value="2">
-            <label for="2">- 2</label>
-            
-            <input type="radio" id="3" name="rating" value="3">
-            <label for="3">- 3</label>
-            
-            <input type="radio" id="4" name="rating" value="4">
-            <label for="4">- 4</label>
-            
-            <input type="radio" id="5" name="rating" value="5" checked>
-            <label for="5">- 5</label>
+            {% for i in r %}
+            <input type="radio" id="{{i}}" name="rating" value="{{i}}" required>
+            <label for="{{i}}">- {{i}}</label>
+            {% endfor %}
         </fieldset>
 
         <div>

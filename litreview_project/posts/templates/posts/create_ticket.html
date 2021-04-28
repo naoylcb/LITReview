@@ -4,7 +4,7 @@
 
 <h1>Créer un ticket</h1>
 
-<form method="POST" action="{% url 'posts:create_ticket' %}">
+<form method="POST" action="{% url 'posts:create_ticket' %}" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div>
@@ -19,7 +19,7 @@
 
     <div>
         <label for="image">Image</label>
-        <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+        <input type="file" id="image" name="image" accept="image/*">
     </div>
     
     <input type="submit" value="Envoyer">

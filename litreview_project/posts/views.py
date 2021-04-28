@@ -2,7 +2,6 @@ from itertools import chain
 
 from django.shortcuts import render, redirect
 from django.db.models import CharField, Value
-from django.apps import apps as django_apps
 
 from .models import Ticket, Review
 from subscription.models import UserFollows
@@ -13,7 +12,10 @@ def feed(request):
         users.append(request.user)
         
         reviews = Review.objects.filter(user__in=users)
+        user_tickets_reviews = Review.objects.filter(ticket__user=request.user)
+        user_tickets_reviews = user_tickets_reviews.annotate(content_type=Value('REVIEW', CharField()))
         reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+        reviews = reviews.union(user_tickets_reviews)
         
         reviewed_tickets_title = [r.ticket.title for r in Review.objects.all()]
         reviewed_tickets = Ticket.objects.filter(user__in=users, title__in=reviewed_tickets_title)
@@ -48,7 +50,7 @@ def create_ticket(request):
         if request.method == 'POST':
             title = request.POST.get('title')
             description = request.POST.get('description')
-            image = request.POST.get('image')
+            image = request.FILES['image'] if request.FILES else None
             
             ticket = Ticket(title=title, description=description, image=image, user=request.user)
             ticket.save()
@@ -72,7 +74,7 @@ def create_review(request, ticket_title):
             
             return redirect('posts:feed')
         else:
-            return render(request, 'posts/create_review.html', {'ticket': ticket})
+            return render(request, 'posts/create_review.html', {'ticket': ticket, 'r': range(6)})
     else:
         return redirect('authentication:login')
 
@@ -81,7 +83,7 @@ def create_ticket_review(request):
         if request.method == 'POST':
             title = request.POST.get('title')
             description = request.POST.get('description')
-            image = request.POST.get('image')
+            image = request.FILES['image'] if request.FILES else None
             
             ticket = Ticket(title=title, description=description, image=image, user=request.user)
             ticket.save()
@@ -95,7 +97,7 @@ def create_ticket_review(request):
             
             return redirect('posts:feed')
         else:
-            return render(request, 'posts/create_ticket_review.html')
+            return render(request, 'posts/create_ticket_review.html', {'r': range(6)})
     else:
         return redirect('authentication:login')
     
@@ -105,7 +107,9 @@ def edit_ticket(request, ticket_title):
         if request.method == 'POST':
             ticket.title = request.POST.get('title')
             ticket.description = request.POST.get('description')
-            ticket.image = request.POST.get('image')
+            if request.FILES:
+                ticket.image.delete()
+                ticket.image = request.FILES['image']
             ticket.save()
             
             return redirect('posts:posts')
@@ -121,6 +125,7 @@ def delete_ticket(request, ticket_title):
         pass
     else:
         if request.user == ticket.user:
+            ticket.image.delete()
             ticket.delete()
     finally:
         return redirect('posts:posts')
@@ -136,7 +141,7 @@ def edit_review(request, review_headline):
             
             return redirect('posts:posts')
         else:
-            return render(request, 'posts/edit_review.html', {'review': review})
+            return render(request, 'posts/edit_review.html', {'review': review, 'r': range(6)})
     else:
         return redirect('authentication:login')
 
