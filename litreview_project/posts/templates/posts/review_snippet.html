@@ -7,7 +7,7 @@
 
     <p>{{ review.time_created }}</p>
     <p>{{ review.headline }}</p>
-    <p>{{ review.rating }}</p>
+    <p>{% for i in ''|center:review.rating %} &#x2605; {% endfor %}</p>
     <p>{{ review.body }}</p>
 
     {% include 'posts/ticket_snippet.html' with ticket=review.ticket %}
