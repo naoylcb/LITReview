@@ -2,17 +2,35 @@
 
 {% block content %}
 
-<a href="{% url 'posts:create_ticket'%}">Demander une critique</a>
-<a href="{% url 'posts:create_ticket_review' %}">Créer une critique</a>
-
-{% for post in posts %}
-    {% if post.content_type == 'UNREVIEWED_TICKET' %}
-        {% include 'posts/ticket_snippet.html' with ticket=post can_review=True %}
-    {% elif post.content_type == 'REVIEWED_TICKET' %}
-        {% include 'posts/ticket_snippet.html' with ticket=post %}
-    {% elif post.content_type == 'REVIEW' %}
-        {% include 'posts/review_snippet.html' with review=post %}
-    {% endif %}
-{% endfor %}
+<div class="container w-50">
+    <div class="row mt-3">
+        <div class="col">
+            <h1 class="text-center">Flux</h1>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-evenly">
+                <a class="btn btn-outline-dark" href="{% url 'posts:create_ticket'%}">Demander une critique</a>
+                <a class="btn btn-outline-dark" href="{% url 'posts:create_ticket_review' %}">Créer une critique</a>
+            </div>
+        </div>
+    </div>
+    
+    {% for post in posts %}
+    <div class="row">
+        <div class="col">
+            {% if post.content_type == 'UNREVIEWED_TICKET' %}
+                {% include 'posts/ticket_snippet.html' with ticket=post can_review=True %}
+            {% elif post.content_type == 'REVIEWED_TICKET' %}
+                {% include 'posts/ticket_snippet.html' with ticket=post %}
+            {% elif post.content_type == 'REVIEW' %}
+                {% include 'posts/review_snippet.html' with review=post %}
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

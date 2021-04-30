@@ -2,27 +2,33 @@
 
 {% block content %}
 
-<h1>Créer un ticket</h1>
+<div class="row mt-3">
+    <div class="col">
+        <h1 class="text-center">Créer un ticket</h1>
 
-<form method="POST" action="{% url 'posts:create_ticket' %}" enctype="multipart/form-data">
-    {% csrf_token %}
+        <form method="POST" action="{% url 'posts:create_ticket' %}" enctype="multipart/form-data">
+            {% csrf_token %}
 
-    <div>
-        <label for="title">Titre</label>
-        <input type="text" name="title" id="title" maxlength=128 required>
+            <div class="d-flex flex-column mb-3">
+                <label for="title">Titre</label>
+                <input type="text" name="title" id="title" maxlength=128 required>
+            </div>
+
+            <div class="d-flex flex-column mb-3">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" cols="30" rows="10" max_length=2048></textarea>
+            </div>
+
+            <div class="d-flex flex-column mb-3">
+                <label for="image">Image</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            
+            <div class="text-end">
+                <input class="btn btn-outline-dark" type="submit" value="Envoyer">
+            </div>
+        </form>
     </div>
-
-    <div>
-        <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10" max_length=2048></textarea>
-    </div>
-
-    <div>
-        <label for="image">Image</label>
-        <input type="file" id="image" name="image" accept="image/*">
-    </div>
-    
-    <input type="submit" value="Envoyer">
-</form>
+</div>
 
 {% endblock %}

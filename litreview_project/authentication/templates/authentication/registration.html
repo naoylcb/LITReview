@@ -8,21 +8,26 @@
 
 <h1>Inscrivez-vous</h1>
 
-<form method="POST" action="{% url 'authentication:registration' %}">
+<form class="container w-25" method="POST" action="{% url 'authentication:registration' %}">
     {% csrf_token %}
 
-    {{ form.username.label_tag }}
-    {{ form.username }}
+    <div class="mb-3 d-flex flex-column">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+    </div>
 
-    {{ form.password1.label_tag }}
-    {{ form.password1 }}
+    <div class="mb-3 d-flex flex-column">
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+    </div>
 
-    {{ form.password2.label_tag }}
-    {{ form.password2 }}
+    <div class="mb-3 d-flex flex-column">
+        {{ form.password2.label_tag }}
+        {{ form.password2 }}
+    </div>
 
-    <a href="{% url 'authentication:login' %}">Retourner</a>
-    
-    <input type="submit" value="S'inscrire">
+    <a class="btn btn-outline-dark" href="{% url 'authentication:login' %}">Retourner</a>
+    <input class="btn btn-outline-dark" type="submit" value="S'inscrire">
 </form>
 
 {% endblock %}

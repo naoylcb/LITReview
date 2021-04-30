@@ -23,10 +23,9 @@ def subscription(request):
             else:
                 try:
                     uf = UserFollows(user=request.user, followed_user=new_follow)
-                except IntegrityError:
-                    context['error'] = 'Vous êtes déjà abonné à cet utilisateur !'
-                else:
                     uf.save()
+                except IntegrityError :
+                    context['error'] = 'Vous êtes déjà abonné à cet utilisateur !'
     
     return render(request, 'subscription/subscription.html', context)
 

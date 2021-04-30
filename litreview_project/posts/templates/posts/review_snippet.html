@@ -1,19 +1,23 @@
-<div class="review" style="border: 1px solid red; margin: 10px;">
-    {% if review.user == user %}
-    <p>Vous avez publié une critique</p>
-    {% else %}
-    <p>{{ review.user }} a publié une critique</p>
-    {% endif %}
+<div class="border border-primary mt-3 p-2">
+    <div class="d-flex justify-content-between">
+        {% if review.user == user %}
+        <p>Vous avez publié une critique</p>
+        {% else %}
+        <p>{{ review.user }} a publié une critique</p>
+        {% endif %}
 
-    <p>{{ review.time_created }}</p>
-    <p>{{ review.headline }}</p>
-    <p>{% for i in ''|center:review.rating %} &#x2605; {% endfor %}</p>
+        <p class="text-end">{{ review.time_created }}</p>
+    </div>
+
+    <p>{{ review.headline }} - {% for i in ''|center:review.rating %} &#x2605; {% endfor %}</p>
     <p>{{ review.body }}</p>
 
     {% include 'posts/ticket_snippet.html' with ticket=review.ticket %}
 
     {% if my_review %}
-    <a href="{% url 'posts:edit_review' review.headline %}">Modifier</a>
-    <a href="{% url 'posts:delete_review' review.headline %}">Supprimer</a>
+    <div class="text-end mt-2">
+        <a class="btn btn-outline-dark" href="{% url 'posts:edit_review' review.headline %}">Modifier</a>
+        <a class="btn btn-outline-dark" href="{% url 'posts:delete_review' review.headline %}">Supprimer</a>
+    </div>
     {% endif %}
 </div>

@@ -1,24 +1,29 @@
-<div class="ticket" style="border: 1px solid black; margin: 10px;">
-    {% if ticket.user == user %}
-    <p>Vous avez demandé une critique</p>
-    {% else %}
-    <p>{{ ticket.user }} a demandé une critique</p>
-    {% endif %}
+<div class="border border-dark mt-3 p-2">
+    <div class="d-flex justify-content-between">
+        {% if ticket.user == user %}
+        <p>Vous avez demandé une critique</p>
+        {% else %}
+        <p>{{ ticket.user }} a demandé une critique</p>
+        {% endif %}
+        
+        <p class="text-end">{{ ticket.time_created }}</p>
+    </div>
     
-    <p>{{ ticket.time_created }}</p>
     <p>{{ ticket.title }}</p>
     <p>{{ ticket.description }}</p>
     
     {% if ticket.image.url != "" %}
-    <img width="10%" src="{{ ticket.image.url }}"></img>
+    <img width="20%" src="{{ ticket.image.url }}"></img>
     {% endif %}
 
     {% if can_review %}
-    <a href="{% url 'posts:create_review' ticket.title %}">Créer une critique</a>
+    <div class="text-end"><a class="btn btn-outline-dark" href="{% url 'posts:create_review' ticket.title %}">Créer une critique</a></div>
     {% endif %}
 
     {% if my_ticket %}
-    <a href="{% url 'posts:edit_ticket' ticket.title %}">Modifier</a>
-    <a href="{% url 'posts:delete_ticket' ticket.title %}">Supprimer</a>
+    <div class="text-end">
+        <a class="btn btn-outline-dark" href="{% url 'posts:edit_ticket' ticket.title %}">Modifier</a>
+        <a class="btn btn-outline-dark" href="{% url 'posts:delete_ticket' ticket.title %}">Supprimer</a>
+    </div>
     {% endif %}
 </div>

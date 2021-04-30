@@ -2,24 +2,33 @@
 
 {% block content %}
 
-<h2>Inscrivez-vous maintenant</h2>
-<a href="{% url 'authentication:registration' %}">S'inscrire</a>
+<div class="col">
+    <h2>Inscrivez-vous maintenant</h2>
+    <a class="btn btn-outline-dark" href="{% url 'authentication:registration' %}">S'inscrire</a>
+</div>
 
-<h2>Connectez-vous</h2>
+<div class="col">
+    <h2>Connectez-vous</h2>
 
-{% if form.errors %}
-<p>Nom d'utilisateur ou mot de passe incorrect !</p>
-{% endif %}
+    {% if form.errors %}
+    <p>Nom d'utilisateur ou mot de passe incorrect !</p>
+    {% endif %}
 
-<form method="POST" action="{% url 'authentication:login' %}">
-    {% csrf_token %}
+    <form class="container w-75" method="POST" action="{% url 'authentication:login' %}">
+        {% csrf_token %}
 
-    {{ form.username.label_tag }}
-    {{ form.username }}
+        <div class="mb-3 d-flex flex-column">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
 
-    {{ form.password.label_tag }}
-    {{ form.password }}
-    <input type="submit" value="Se connecter">
-</form>
+        <div class="mb-3 d-flex flex-column">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+        </div>
+
+        <input class="btn btn-outline-dark" type="submit" value="Se connecter">
+    </form>
+</div>
 
 {% endblock %}
