@@ -6,5 +6,6 @@ app_name = 'subscription'
 
 urlpatterns = [
     path('', views.subscription, name='subscription'),
-    path('unsubscribe/<user_to_unsubscribe>', views.unsubscribe, name='unsubscribe'),
+    path('unsubscribe/<user_to_unsubscribe>',
+         views.unsubscribe, name='unsubscribe'),
 ]
