@@ -22,6 +22,4 @@ Déplacez-vous dans le dossier "litreview_project" et exécutez la commande : `p
 
 Dans votre navigateur, écrivez dans l'url : http://127.0.0.1:8000/
 
-Vous pouvez vous connecter avec ce compte pour tester l'interface :
-identifiant : yoan
-mot de passe : test-test1
+Vous pouvez vous connecter avec ce compte pour tester l'interface : yoan | test-test1
