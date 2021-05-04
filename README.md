@@ -21,3 +21,7 @@ Toujours dans le terminal, installez les dépendances en exécutant la commande 
 Déplacez-vous dans le dossier "litreview_project" et exécutez la commande : `python manage.py runserver`
 
 Dans votre navigateur, écrivez dans l'url : http://127.0.0.1:8000/
+
+Vous pouvez vous connecter avec ce compte pour tester l'interface :
+identifiant : yoan
+mot de passe : test-test1
