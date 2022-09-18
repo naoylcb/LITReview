@@ -1,25 +1,27 @@
+*(Project realized during my training)*
+
 # LITReview
 
-Site permettant de consulter ou de solliciter une critique de livres à la demande.
+Site allowing to consult or request a book review on demand.
 
-## Installation et Exécution
+## Installing and running
 
-Si vous avez déjà installé Python, assurez-vous qu'il soit à jour.
-Sinon, téléchargez et installez Python. [Site Web](https://www.python.org/downloads/)
+If you already have Python installed, make sure it is up to date.
+If not, download and install Python. [Website](https://www.python.org/downloads/)
 
-Commencez par télécharger le repository en cliquant sur le menu "Code", puis "Download ZIP".
+Start by downloading the repository by clicking on the "Code" menu, then "Download ZIP".
 
-Extrayez le dossier. 
+Extract the folder. 
 
-Dans celui-ci, créez et activez un environnement virtuel. Pour cela :
-- Ouvrez votre terminal et placez-vous dans le dossier extrait,
-- Exécutez la commande : `python -m venv env`,
-- Exécutez ensuite la commande : `source env/bin/activate` (Sous Windows, l'activation se fera avec le fichier env/Scripts/activate.bat).
+In it, create and activate a virtual environment. To do this:
+- Open your terminal and place yourself in the extracted folder,
+- Run the command: `python -m venv env`,
+- Then run the command: `source env/bin/activate` (On Windows, activation will be done with the file env/Scripts/activate.bat).
 
-Toujours dans le terminal, installez les dépendances en exécutant la commande : `pip install -r requirements.txt`
+Still in the terminal, install the dependencies by running the command: `pip install -r requirements.txt`.
 
-Déplacez-vous dans le dossier "litreview_project" et exécutez la commande : `python manage.py runserver`
+Move to the "litreview_project" folder and run the command: `python manage.py runserver`
 
-Dans votre navigateur, écrivez dans l'url : http://127.0.0.1:8000/
+In your browser, write in the url : http://127.0.0.1:8000/
 
-Vous pouvez vous connecter avec ce compte pour tester l'interface : yoan | test-test1
+You can connect with this account to test the interface : yoan | test-test1

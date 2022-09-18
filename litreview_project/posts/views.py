@@ -95,7 +95,7 @@ def create_review(request, ticket_title):
 
             return redirect('posts:feed')
         else:
-            return render(request, 'posts/create_review.html', 
+            return render(request, 'posts/create_review.html',
                           {'ticket': ticket, 'r': range(6)})
 
 
@@ -121,7 +121,7 @@ def create_ticket_review(request):
 
         return redirect('posts:feed')
     else:
-        return render(request, 'posts/create_ticket_review.html', 
+        return render(request, 'posts/create_ticket_review.html',
                       {'r': range(6)})
 
 
@@ -144,7 +144,7 @@ def edit_ticket(request, ticket_title):
 
                 return redirect('posts:posts')
             else:
-                return render(request, 'posts/edit_ticket.html', 
+                return render(request, 'posts/edit_ticket.html',
                               {'ticket': ticket})
 
 
@@ -180,7 +180,7 @@ def edit_review(request, review_headline):
 
                 return redirect('posts:posts')
             else:
-                return render(request, 'posts/edit_review.html', 
+                return render(request, 'posts/edit_review.html',
                               {'review': review, 'r': range(6)})
 
 

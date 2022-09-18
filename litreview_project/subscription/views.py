@@ -40,7 +40,8 @@ def unsubscribe(request, user_to_unsubscribe):
         pass
     else:
         for uf in UserFollows.objects.all():
-            if (uf.user, uf.followed_user) == (request.user, user_to_unsubscribe):
+            if (uf.user, uf.followed_user) == (request.user,
+                                               user_to_unsubscribe):
                 uf.delete()
 
     return redirect('subscription:subscription')
