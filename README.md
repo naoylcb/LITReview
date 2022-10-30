@@ -1,5 +1,3 @@
-*(Project realized during my training)*
-
 # LITReview
 
 Site allowing to consult or request a book review on demand.
